@@ -24,7 +24,18 @@ class Pacman
 		bool godMode = false;
 		int godModeMaxMoves = 40;
 		int godModeMovesLeft = 40;
+
+		// Reset
+		void Reset();
 };
+
+void Pacman::Reset()
+{
+	mouthOpen = false;
+	godMode = false;
+	godModeMaxMoves = 40;
+	godModeMovesLeft = 40;
+}
 
 class Game
 {
@@ -348,7 +359,7 @@ void movePacman(Game& game, Grid& grid, Pacman& pacman, int newLocation) {
 		grid.pacmanLocation = grid.leftTeleporterLocation;
 		grid.currentGrid[grid.leftTeleporterLocation] = grid.pacman;
 	} 
-	else if (newLocation == grid.leftTeleporterLocation || locationOffset == grid.rightTeleporterLocation) {
+	else if (newLocation == grid.leftTeleporterLocation || newLocation == grid.rightTeleporterLocation) {
 		grid.currentGrid[oldLocation] = grid.nothing;
 		grid.pacmanLocation = newLocation;
 		grid.currentGrid[newLocation] = grid.pacman;
@@ -364,6 +375,7 @@ void movePacman(Game& game, Grid& grid, Pacman& pacman, int newLocation) {
 			grid.Draw(game, pacman);
 			grid.Flash();
 			grid.Reset();
+			pacman.Reset();
 		}
 	}
 	else if (newCharacter == grid.yellow_dot) {
@@ -380,6 +392,7 @@ void movePacman(Game& game, Grid& grid, Pacman& pacman, int newLocation) {
 			grid.Draw(game, pacman);
 			grid.Flash();
 			grid.Reset();
+			pacman.Reset();
 		}
 	}
     else if (newCharacter == grid.nothing) {
@@ -404,44 +417,44 @@ void moveDown(Game& game, Grid& grid, Pacman& pacman) {
 
 void themeMusic() {
 	Beep((DWORD) 245.94, 200); // B
-	Beep((DWORD)245.94 * 2, 200); // B
-	Beep((DWORD)185.00 * 2, 200); // F#
-	Beep((DWORD)155.56 * 2, 200); // Eb
-	Beep((DWORD)245.94 * 2, 100); // B
-	Beep((DWORD)185.00 * 2, 200); // F#
-	Beep((DWORD)155.56 * 2, 400); // Eb
+	Beep((DWORD) 245.94 * 2, 200); // B
+	Beep((DWORD) 185.00 * 2, 200); // F#
+	Beep((DWORD) 155.56 * 2, 200); // Eb
+	Beep((DWORD) 245.94 * 2, 100); // B
+	Beep((DWORD) 185.00 * 2, 200); // F#
+	Beep((DWORD) 155.56 * 2, 400); // Eb
 	Sleep(100);
 
-	Beep((DWORD)261.63, 200); // C 
-	Beep((DWORD)261.63 * 2, 200); // C
-	Beep((DWORD)391.00, 200); // G
-	Beep((DWORD)329.63, 200); // E
-	Beep((DWORD)261.63 * 2, 100); // C
-	Beep((DWORD)391.00, 200); // G
-	Beep((DWORD)329.63, 400); // E
+	Beep((DWORD) 261.63, 200); // C 
+	Beep((DWORD) 261.63 * 2, 200); // C
+	Beep((DWORD) 391.00, 200); // G
+	Beep((DWORD) 329.63, 200); // E
+	Beep((DWORD) 261.63 * 2, 100); // C
+	Beep((DWORD) 391.00, 200); // G
+	Beep((DWORD) 329.63, 400); // E
 	Sleep(100);
 
-	Beep((DWORD)245.94, 200); // B
-	Beep((DWORD)245.94 * 2, 200); // B
-	Beep((DWORD)185.00 * 2, 200); // F#
-	Beep((DWORD)155.56 * 2, 200); // Eb
-	Beep((DWORD)245.94 * 2, 100); // B
-	Beep((DWORD)185.00 * 2, 200); // F#
-	Beep((DWORD)155.56 * 2, 400); // Eb
+	Beep((DWORD) 245.94, 200); // B
+	Beep((DWORD) 245.94 * 2, 200); // B
+	Beep((DWORD) 185.00 * 2, 200); // F#
+	Beep((DWORD) 155.56 * 2, 200); // Eb
+	Beep((DWORD) 245.94 * 2, 100); // B
+	Beep((DWORD) 185.00 * 2, 200); // F#
+	Beep((DWORD) 155.56 * 2, 400); // Eb
 	Sleep(100);
 
-	Beep((DWORD)155.56 * 2, 100); // Eb
-	Beep((DWORD)329.63, 100); // E
-	Beep((DWORD)349.23, 200); // F
+	Beep((DWORD) 155.56 * 2, 100); // Eb
+	Beep((DWORD) 329.63, 100); // E
+	Beep((DWORD) 349.23, 200); // F
 
-	Beep((DWORD)349.23, 100); // F
-	Beep((DWORD)369.99, 100); // F#
-	Beep((DWORD)391.00, 200); // G
+	Beep((DWORD) 349.23, 100); // F
+	Beep((DWORD) 369.99, 100); // F#
+	Beep((DWORD) 391.00, 200); // G
 
-	Beep((DWORD)391.00, 100); // G
-	Beep((DWORD)415.30, 100); // Ab
-	Beep((DWORD)440.00, 200); // A
-	Beep((DWORD)245.00 * 2, 400); //B
+	Beep((DWORD) 391.00, 100); // G
+	Beep((DWORD) 415.30, 100); // Ab
+	Beep((DWORD) 440.00, 200); // A
+	Beep((DWORD) 245.00 * 2, 400); //B
 }
 
 int main()
